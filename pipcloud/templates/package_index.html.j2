@@ -5,8 +5,9 @@
 	<title>{{name}} Index</title>
 </head>
 <body>
-{%- for file in files | sort -%}
-	<a href="{{ filename }}">{{ filename }}</a><br>
+{%- for file in files[name] | sort -%}
+	{% set path = file[file.rfind("/")+1:] %}
+	<a href="{{ path }}">{{ path }}</a><br>
 {%- endfor %}
 </body>
 </html>

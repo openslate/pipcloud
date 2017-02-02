@@ -13,20 +13,25 @@ Install the latest version::
 Usage
 -----
 
+The s3 bucket you choose should be configured to allow "website hosting" and the
+index document should be set to "index.html".
+
 You can now use ``pipcloud`` to create Python packages and upload them to your S3 bucket.::
 
-    pipcloud [-p /path/to/setup.py] projectname s3://my-bucket
+    pipcloud [-p /path/to/setup.py] projectname my-bucket
 
 
 Installing packages
 -------------------
 
-Install your packages using ``pip`` by pointing the ``--extra-index-url`` to your CloudFront distribution (optionally followed by a secret subdirectory):::
+Install your packages using ``pip`` by pointing the ``--extra-index-url`` to your s3 url::
 
-    pip install --upgrade awesome-project --extra-index-url https://pypi.example.com/SECRET/
+    pip install --upgrade prjectname --extra-index-url
+    http://my-bucket.s3-website-us-east-1.amazonaws.com
 
 Alternatively, you can configure the index URL in ~/.pip/pip.conf or
 /etc/pip.conf:::
 
     [global]
-    extra-index-url = https://pypi.example.com/SECRET/
+    extra-index-url = http://my-bucket.s3-website-us-east-1.amazonaws.com/
+    trusted-hosts = my-bucket.s3-website-us-east-1.amazonaws.com
